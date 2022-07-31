@@ -1,6 +1,6 @@
 # import wget
 # import zipfile
-# import tensorflow as tf
+import tensorflow as tf
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
 from Plot import plot_ellipse_seg_test
