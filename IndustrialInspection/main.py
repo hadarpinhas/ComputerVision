@@ -1,6 +1,6 @@
 # import wget
 # import zipfile
-import tensorflow as tf
+# import tensorflow as tf
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
 from Plot import plot_ellipse_seg_test
@@ -14,7 +14,6 @@ from tensorflow.keras.optimizers import Adam
 import pickle
 import keras
 from predictEvaluation import predict_evaluation
-from keras.utils.generic_utils import get_custom_objects
 
 ## data label format
 # [filename] \t \n [semi-major axis] \t [semi-minor axis] \t [rotation angle]
@@ -52,20 +51,20 @@ X_test.shape
 
 ## Unet
 
-img_rows = 512
-img_cols = 512
-model = build_small_unet(img_rows, img_cols)
+# img_rows = 512
+# img_cols = 512
+# model = build_small_unet(img_rows, img_cols)
 # model.summary()
-model.compile(optimizer=Adam(learning_rate=1e-4) , loss=bce_jaccard_loss, metrics=[iou_score])
-history = model.fit(X_train, y_train, batch_size=10, epochs=50, verbose=1, validation_split=0.1)
+# model.compile(optimizer=Adam(learning_rate=1e-4) , loss=bce_jaccard_loss, metrics=[iou_score])
+# history = model.fit(X_train, y_train, batch_size=10, epochs=50, verbose=1, validation_split=0.1)
 # with open('trainHistoryDict', 'wb') as file_pi:
         # pickle.dump(history.history, file_pi)
 # keras.models.save_model(model, 'my_model/my_model.h5')
 
-# history = pickle.load(open('trainHistoryDict', "rb"))
+history = pickle.load(open('trainHistoryDict', "rb"))
 
 ## plot
-history = model.history.history
+# history = model.history.history
 
 plt.figure(figsize=(20, 5))
 plt.plot(history['loss'], label='Train loss')
@@ -81,7 +80,7 @@ plt.xlabel('Epochs')
 plt.ylabel('IOU')
 plt.legend()
 
-# model = keras.models.load_model('my_model/my_model.h5', compile=False)
+model = keras.models.load_model('my_model/my_model.h5', compile=False)
 
 predict = model.predict(X_test)
 
