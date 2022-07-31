@@ -1,0 +1,15 @@
+
+syntax = "proto3";
+
+package acap;
+option java_package = "acap.model";
+option java_outer_classname = "LaneMessageProtocol";
+
+message LaneMessage {
+	double offset = 1;
+	double orientation = 2;
+}
+
+message MultiLaneMessage {
+	repeated LaneMessage laneMessages = 1;
+}
